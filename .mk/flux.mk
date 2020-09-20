@@ -1,4 +1,4 @@
-flux-helm:
+flux-repo:
 	helm repo add fluxcd https://charts.fluxcd.io
 
 flux-install:

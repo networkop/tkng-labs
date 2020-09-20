@@ -17,11 +17,20 @@ check: kind-ensure kubectl-ensure helm-ensure
 	echo 'all good' || echo 'check failed. see logs above.'
 
 ## Setup the lab environment
-lab: kind-start cache-start
+setup: kind-start cache-start
 
-## Setup flux
-flux: flux-helm
+## Bring up the cluster
+up: kind-start flux-repo
 	make -s flux-install
 
+## Connecto to Weave Scope
+connect:
+	echo 'Navigate to http://localhost:8080' && \
+	kubectl port-forward deployment/weave-scope-frontend-weave-scope 8080:4040
+
+## Shutdown
+down:
+	make -s kind-stop
+
 ## Destroy the lab environment
-nuke: kind-stop cache-stop
+cleanup: kind-stop cache-stop
