@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-09-21T16:12:23.082Z" agent="5.0 (X11)" etag="_dDsF-Wn6H3zP-bz5Az5" version="13.7.3" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2020-09-21T16:18:42.381Z" agent="5.0 (X11)" etag="GOzybRhHfnAstFSKHUeF" version="13.7.3" type="github" pages="3">
   <diagram id="bb75hKjfEB5PGJDdD92y" name="Templates">
     <mxGraphModel dx="1422" dy="729" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -436,12 +436,12 @@
     </mxGraphModel>
   </diagram>
   <diagram id="q_y3Atesxo8uv_4-H0Cn" name="logo">
-    <mxGraphModel dx="981" dy="503" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="813" dy="417" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="aF0mQ-afM0jrV9hmaIbj-0" />
         <mxCell id="aF0mQ-afM0jrV9hmaIbj-1" parent="aF0mQ-afM0jrV9hmaIbj-0" />
         <mxCell id="3oKiMLNllF7-drYSaOPQ-0" value="" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#FFFFFF;align=right;strokeColor=none;fillColor=#8451a1;" vertex="1" parent="aF0mQ-afM0jrV9hmaIbj-1">
-          <mxGeometry x="500" y="594.5" width="275" height="120" as="geometry" />
+          <mxGeometry x="530" y="594.5" width="275" height="120" as="geometry" />
         </mxCell>
         <mxCell id="aF0mQ-afM0jrV9hmaIbj-3" value="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; " style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=none;gradientColor=none;fontFamily=PT Sans Narrow;fontSize=16;strokeColor=none;fontColor=#666361;" vertex="1" parent="aF0mQ-afM0jrV9hmaIbj-1">
           <mxGeometry x="563" y="620" width="120" height="69" as="geometry" />
@@ -464,7 +464,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="3oKiMLNllF7-drYSaOPQ-1" value="" style="endArrow=oval;html=1;strokeWidth=1;fontFamily=PT Sans Narrow;fontSize=16;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontColor=#FFFFFF;strokeColor=#323232;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=oval;startFill=1;" edge="1" parent="aF0mQ-afM0jrV9hmaIbj-1" source="aF0mQ-afM0jrV9hmaIbj-3" target="aF0mQ-afM0jrV9hmaIbj-3">
+        <mxCell id="3oKiMLNllF7-drYSaOPQ-1" value="" style="endArrow=oval;html=1;strokeWidth=1;fontFamily=PT Sans Narrow;fontSize=16;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontColor=#FFFFFF;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=oval;startFill=1;strokeColor=#FFFFFF;" edge="1" parent="aF0mQ-afM0jrV9hmaIbj-1" source="aF0mQ-afM0jrV9hmaIbj-3" target="aF0mQ-afM0jrV9hmaIbj-3">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="680" y="660" as="sourcePoint" />
             <mxPoint x="572.04" y="684.7859999999998" as="targetPoint" />
@@ -476,6 +476,9 @@
         </mxCell>
         <mxCell id="aF0mQ-afM0jrV9hmaIbj-7" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Kubernetes.svg;" vertex="1" parent="aF0mQ-afM0jrV9hmaIbj-1">
           <mxGeometry x="606.81" y="639" width="35.29" height="33.87" as="geometry" />
+        </mxCell>
+        <mxCell id="74BWSBfTKZin5kM2YjES-0" value="GUIDE" style="text;whiteSpace=wrap;html=1;fontSize=22;fontFamily=Montserrat;fontColor=#FFFFFF;" vertex="1" parent="aF0mQ-afM0jrV9hmaIbj-1">
+          <mxGeometry x="700" y="634.5" width="80" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
