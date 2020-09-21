@@ -1,4 +1,5 @@
-
+NODE?=k8s-guide-control-plane
+POD:=$(shell kubectl get pods --field-selector spec.nodeName=$(NODE) -o jsonpath='{.items[0].metadata.name}')
 
 include .mk/kind.mk
 include .mk/help.mk
@@ -23,10 +24,14 @@ setup: kind-start cache-start
 up: kind-start flux-repo
 	make -s flux-install
 
-## Connecto to Weave Scope
+## Connect to Weave Scope
 connect:
 	echo 'Navigate to http://localhost:8080' && \
-	kubectl port-forward deployment/weave-scope-frontend-weave-scope 8080:4040
+	kubectl -n weave port-forward deployment/weave-scope-frontend-weave-scope 8080:4040
+
+## Connect to the troubleshooting pod
+tshoot:
+	kubectl exec -it $(POD) bash
 
 ## Shutdown
 down:

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    run: net-tshoot
+  name: net-tshoot
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      name: net-tshoot
+  template:
+    metadata:
+      labels:
+        name: net-tshoot
+    spec:
+      containers:
+      - command: ["tail", "-f", "/dev/null"]
+        image: nicolaka/netshoot
+        imagePullPolicy: Always
+        name: net-tshoot
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /lib/modules/
+          name: lib-modules
+      #hostNetwork: true
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
+      volumes:
+      - hostPath:
+          path: /lib/modules
+          type: ""
+        name: lib-modules
+
