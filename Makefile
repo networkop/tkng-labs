@@ -7,6 +7,7 @@ include .mk/cache.mk
 include .mk/kubectl.mk
 include .mk/flux.mk
 include .mk/helm.mk
+include .mk/plugins.mk
 
 .DEFAULT_GOAL := help
 
@@ -22,7 +23,7 @@ setup: kind-start cache-start
 
 ## Bring up the cluster
 up: kind-start flux-repo
-	make -s flux-install
+	make -s flux-install &>/dev/null
 
 ## Connect to Weave Scope
 connect:
@@ -32,6 +33,10 @@ connect:
 ## Connect to the troubleshooting pod
 tshoot:
 	kubectl exec -it $(POD) bash
+
+## Reset k8s cluster
+reset:
+	make -s down && make -s up
 
 ## Shutdown
 down:
