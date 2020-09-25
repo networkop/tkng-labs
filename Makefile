@@ -32,7 +32,7 @@ connect:
 
 ## Connect to the troubleshooting pod
 tshoot:
-	kubectl exec -it $(POD) bash
+	@kubectl exec -it $(POD) -- bash
 
 ## Reset k8s cluster
 reset:
