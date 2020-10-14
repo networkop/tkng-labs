@@ -5,7 +5,7 @@ flannel: delete-kindnet preload-cni-image
 	helm upgrade --namespace flux -f flux-values.yml --set git.branch=flannel flux fluxcd/flux
 
 
-nuke-all-pods:
+nuke-all-pods: flush-cni-dir
 	kubectl delete --all pods --all-namespaces	
 
 
@@ -19,3 +19,8 @@ flush-nat:
 	docker exec -it k8s-guide-worker iptables --table nat --flush
 	docker exec -it k8s-guide-worker2 iptables --table nat --flush
 	echo 'You may need to restart kube-proxy with "crictl rm --force $(crictl ps --name kube-proxy -q)"'
+
+flush-cni-dir:
+       -docker exec -t k8s-guide-control-plane rm /etc/cni/net.d/10-kindnet.conflist
+       -docker exec -t k8s-guide-worker rm /etc/cni/net.d/10-kindnet.conflist
+       -docker exec -t k8s-guide-worker2 rm /etc/cni/net.d/10-kindnet.conflist
