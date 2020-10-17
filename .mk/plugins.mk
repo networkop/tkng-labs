@@ -21,6 +21,6 @@ flush-nat:
 	echo 'You may need to restart kube-proxy with "crictl rm --force $(crictl ps --name kube-proxy -q)"'
 
 flush-cni-dir:
-       -docker exec -t k8s-guide-control-plane rm /etc/cni/net.d/10-kindnet.conflist
-       -docker exec -t k8s-guide-worker rm /etc/cni/net.d/10-kindnet.conflist
-       -docker exec -t k8s-guide-worker2 rm /etc/cni/net.d/10-kindnet.conflist
+	-docker exec -t k8s-guide-control-plane rm /etc/cni/net.d/10-kindnet.conflist
+	-docker exec -t k8s-guide-worker rm /etc/cni/net.d/10-kindnet.conflist
+	-docker exec -t k8s-guide-worker2 rm /etc/cni/net.d/10-kindnet.conflist
