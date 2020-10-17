@@ -1,5 +1,5 @@
 NODE?=k8s-guide-control-plane
-POD:=$(shell kubectl get pods --field-selector spec.nodeName=$(NODE) -o jsonpath='{.items[0].metadata.name}')
+POD:=$(shell kubectl get pods -n default --field-selector spec.nodeName=$(NODE) -o jsonpath='{.items[0].metadata.name}')
 NODES:=$(shell kubectl get nodes -o jsonpath='{.items[*].metadata.name}')
 
 include .mk/kind.mk
@@ -33,7 +33,7 @@ connect:
 
 ## Connect to the troubleshooting pod
 tshoot:
-	@kubectl exec -it $(POD) -- bash
+	@kubectl -n default exec -it $(POD) -- bash
 
 ## Reset k8s cluster
 reset:
