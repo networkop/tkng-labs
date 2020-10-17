@@ -4,7 +4,7 @@ delete-kindnet:
 flannel: delete-kindnet preload-cni-image
 	helm upgrade --namespace flux -f flux-values.yml --set git.branch=flannel flux fluxcd/flux
 
-weave: delete-kindnet 
+weave: delete-kindnet
 	helm upgrade --namespace flux -f flux-values.yml --set git.branch=weave flux fluxcd/flux
 
 weave-restart:
@@ -18,6 +18,10 @@ preload-cni-image:
 	docker build -t networkop.co.uk/cni-install cni-installer
 	kind load docker-image networkop.co.uk/cni-install:latest --name k8s-guide
 
+flush-routes:
+	docker exec -it k8s-guide-control-plane ip route flush root 10.244.0.0/16 
+	docker exec -it k8s-guide-worker ip route flush root 10.244.0.0/16 
+	docker exec -it k8s-guide-worker2 ip route flush root 10.244.0.0/16 
 
 flush-nat:
 	docker exec -it k8s-guide-control-plane iptables --table nat --flush
