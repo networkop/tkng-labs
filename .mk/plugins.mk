@@ -4,6 +4,8 @@ delete-kindnet:
 flannel: delete-kindnet preload-cni-image
 	helm upgrade --namespace flux -f flux-values.yml --set git.branch=flannel flux fluxcd/flux
 
+weave: delete-kindnet 
+	helm upgrade --namespace flux -f flux-values.yml --set git.branch=weave flux fluxcd/flux
 
 nuke-all-pods: flush-cni-dir
 	kubectl delete --all pods --all-namespaces	
