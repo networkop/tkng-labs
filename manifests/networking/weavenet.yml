@@ -173,8 +173,6 @@ items:
                     fieldRef:
                       apiVersion: v1
                       fieldPath: spec.nodeName
-                - name: IPALLOC_RANGE
-                  value: 10.244.0.0/16
               image: 'docker.io/weaveworks/weave-kube:2.7.0'
               readinessProbe:
                 httpGet:
