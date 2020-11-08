@@ -9,6 +9,7 @@ include .mk/kubectl.mk
 include .mk/flux.mk
 include .mk/helm.mk
 include .mk/plugins.mk
+include .mk/gobgp.mk
 
 .DEFAULT_GOAL := help
 

@@ -10,6 +10,9 @@ weave: delete-kindnet
 weave-restart:
 	kubectl -n kube-system delete pod -l name=weave-net
 
+calico: delete-kindnet
+	helm upgrade --namespace flux -f flux-values.yml --set git.branch=calico flux fluxcd/flux
+
 nuke-all-pods: flush-cni-dir
 	kubectl delete --all pods --all-namespaces	
 
