@@ -1,0 +1,16 @@
+# For more information, see: https://docs.projectcalico.org/v3.16/reference/installation/api#operator.tigera.io/v1.Installation
+apiVersion: operator.tigera.io/v1
+kind: Installation
+metadata:
+  name: default
+spec:
+  # Configures Calico networking.
+  calicoNetwork:
+    bgp: Enabled
+    ipPools:
+    - blockSize: 24
+      cidr: 10.244.128.0/17
+      encapsulation: None
+      natOutgoing: Enabled
+      nodeSelector: all()
+
