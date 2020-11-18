@@ -13,7 +13,7 @@ weave-restart:
 calico: delete-kindnet
 	helm upgrade --namespace flux -f flux-values.yml --set git.branch=calico flux fluxcd/flux
 
-calico-restart:
+calico-restart: flush-routes
 	kubectl -n calico-system delete pod -l k8s-app=calico-node
 
 nuke-all-pods: flush-cni-dir
