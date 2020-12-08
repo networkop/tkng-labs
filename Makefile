@@ -1,5 +1,5 @@
 NODE?=k8s-guide-control-plane
-POD?=$(shell kubectl get pods -n default --field-selector spec.nodeName=$(NODE) -o jsonpath='{.items[0].metadata.name}')
+POD?=$(shell kubectl get -l name=net-tshoot pods -n default --field-selector spec.nodeName=$(NODE) -o jsonpath='{.items[0].metadata.name}')
 NODES?=$(shell kubectl get nodes -o jsonpath='{.items[*].metadata.name}')
 
 include .mk/kind.mk
@@ -10,6 +10,7 @@ include .mk/flux.mk
 include .mk/helm.mk
 include .mk/plugins.mk
 include .mk/gobgp.mk
+include .mk/services.mk
 
 .DEFAULT_GOAL := help
 
