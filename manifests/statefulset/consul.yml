@@ -1,0 +1,17 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: consul
+  namespace: default
+spec:
+  releaseName: consul
+  chart:
+    repository: https://helm.releases.hashicorp.com
+    name: consul
+    version: 0.20.1
+  values:
+    global:
+      name: consul
+
+
+    
