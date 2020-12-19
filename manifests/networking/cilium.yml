@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cilium
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: cilium
+  namespace: cilium 
+spec:
+  releaseName: cilium
+  targetNamespace: cilium
+  chart:
+    repository: https://helm.cilium.io/
+    name: cilium
+    version: 1.9.1
+  values: {}
