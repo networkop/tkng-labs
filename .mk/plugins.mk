@@ -16,6 +16,12 @@ calico: delete-kindnet
 calico-restart: flush-routes
 	kubectl -n calico-system delete pod -l k8s-app=calico-node
 
+cilium: delete-kindnet
+	helm upgrade --namespace flux -f flux-values.yml --set git.branch=cilium flux fluxcd/flux
+
+cilium-restart: flush-routes
+	kubectl -n cilium delete pod -l k8s-app=cilium
+
 nuke-all-pods: flush-cni-dir
 	kubectl delete --all pods --all-namespaces	
 
