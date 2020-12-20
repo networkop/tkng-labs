@@ -15,4 +15,17 @@ spec:
     repository: https://helm.cilium.io/
     name: cilium
     version: 1.9.1
-  values: {}
+  values: # as per the https://docs.cilium.io/en/v1.9/gettingstarted/kind/
+    nodeinit:
+      enabled: true
+    kubeProxyReplacement: partial
+    hostServices:
+      enabled: false
+    externalIPs:
+      enabled: true
+    nodePort:
+      enabled: true
+    hostPort:
+      enabled: true
+    bpf:
+      masquerade: false
