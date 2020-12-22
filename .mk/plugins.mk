@@ -16,8 +16,11 @@ calico: delete-kindnet
 calico-restart: flush-routes
 	kubectl -n calico-system delete pod -l k8s-app=calico-node
 
-cilium: delete-kindnet
+cilium: flux-init-wait delete-kindnet
 	helm upgrade --namespace flux -f flux-values.yml --set git.branch=cilium flux fluxcd/flux
+
+cilium-check:
+	kubectl wait --for=condition=ready --timeout=60s -n cilium pod -l k8s-app=cilium
 
 cilium-restart: flush-routes
 	kubectl -n cilium delete pod -l k8s-app=cilium
@@ -46,6 +49,7 @@ flush-nat:
 	#docker exec -e ID=$(shell docker exec k8s-guide-worker bash -c "crictl ps --name kube-proxy -q") k8s-guide-worker bash -c 'crictl rm --force $${ID}'
 	#docker exec -e ID=$(shell docker exec k8s-guide-worker2 bash -c "crictl ps --name kube-proxy -q") k8s-guide-worker2 bash -c 'crictl rm --force $${ID}'
 
+flush-all: flush-routes flush-nat
 
 flush-cni-dir:
 	-docker exec -t k8s-guide-control-plane rm /etc/cni/net.d/10-kindnet.conflist
