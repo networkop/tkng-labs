@@ -20,13 +20,13 @@ kind-stop:
 		echo "kind cluster is not running"
 
 kind-test:
-	@which kind &>/dev/null
+	@which kind > /dev/null 
 
 kind-ensure: 
 	@make -s kind-test || make -s kind-install
 
 
-kind-start: kind-ensure 
+kind-start: 
 	@kind get clusters | grep $(KIND_CLUSTER_NAME) &>/dev/null || \
 		kind create cluster --name $(KIND_CLUSTER_NAME) --kubeconfig kubeconfig $(KIND_CONF)
 
