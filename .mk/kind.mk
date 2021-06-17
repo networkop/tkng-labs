@@ -10,7 +10,6 @@ else
 KIND_CONF:=--config ./kind.yaml
 endif
 
-
 kind-install: 
 	GO111MODULE="on" go get -u sigs.k8s.io/kind@v0.9.0
 
@@ -27,7 +26,7 @@ kind-ensure:
 
 
 kind-start: 
-	@kind get clusters | grep $(KIND_CLUSTER_NAME) &>/dev/null || \
+	@kind get clusters | grep $(KIND_CLUSTER_NAME) || \
 		kind create cluster --name $(KIND_CLUSTER_NAME) --kubeconfig kubeconfig $(KIND_CONF)
 
 
