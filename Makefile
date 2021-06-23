@@ -11,6 +11,7 @@ include .mk/helm.mk
 include .mk/plugins.mk
 include .mk/gobgp.mk
 include .mk/services.mk
+include .mk/ipvs.mk
 
 .DEFAULT_GOAL := help
 
