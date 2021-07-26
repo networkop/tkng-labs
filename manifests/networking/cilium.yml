@@ -26,6 +26,7 @@ spec:
     nodePort:
       enabled: true
     installIptablesRules: false
+    l7Proxy: false
     hostPort:
       enabled: true
     bpf:
