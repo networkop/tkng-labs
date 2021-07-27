@@ -20,7 +20,7 @@ spec:
       enabled: true
     kubeProxyReplacement: partial
     hostServices:
-      enabled: false
+      enabled: true
     externalIPs:
       enabled: true
     nodePort:
