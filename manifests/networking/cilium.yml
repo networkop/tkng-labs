@@ -14,7 +14,7 @@ spec:
   chart:
     repository: https://helm.cilium.io/
     name: cilium
-    version: 1.9.1
+    version: 1.9.9
   values: # as per the https://docs.cilium.io/en/v1.9/gettingstarted/kind/
     nodeinit:
       enabled: true
