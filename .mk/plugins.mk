@@ -2,22 +2,22 @@ delete-kindnet:
 	-kubectl -n kube-system delete daemonset kindnet
 
 flannel: delete-kindnet preload-cni-image
-	helm upgrade --namespace flux -f flux-values.yml --set git.branch=flannel flux fluxcd/flux
+	kubectl apply -f flux/lab-config/flannel.yaml
 
 weave: delete-kindnet
-	helm upgrade --namespace flux -f flux-values.yml --set git.branch=weave flux fluxcd/flux
+	kubectl apply -f flux/lab-config/weave.yaml
 
 weave-restart:
 	kubectl -n kube-system delete pod -l name=weave-net
 
 calico: delete-kindnet
-	helm upgrade --namespace flux -f flux-values.yml --set git.branch=calico flux fluxcd/flux
+	kubectl apply -f flux/lab-config/calico.yaml
 
 calico-restart: flush-routes
 	kubectl -n calico-system delete pod -l k8s-app=calico-node
 
 cilium: flux-init-wait delete-kindnet
-	helm upgrade --namespace flux -f flux-values.yml --set git.branch=cilium flux fluxcd/flux
+	kubectl apply -f flux/lab-config/cilium.yaml
 
 cilium-check:
 	kubectl wait --for=condition=ready --timeout=60s -n cilium pod -l k8s-app=cilium

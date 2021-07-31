@@ -1,0 +1,8 @@
+apiVersion: crd.projectcalico.org/v1
+kind: BGPPeer
+metadata:
+  name: gobgp-peer
+spec:
+  peerIP: gobgp
+  asNumber: 64496
+  nodeSelector: all()

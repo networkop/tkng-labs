@@ -1,0 +1,12 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: labs
+  namespace: flux
+spec:
+  interval: 1m0s
+  ref:
+    branch: master
+  url: https://github.com/networkop/k8s-guide-labs
+

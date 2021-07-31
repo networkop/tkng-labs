@@ -26,8 +26,9 @@ check: kind-ensure kubectl-ensure helm-ensure
 setup: kind-start cache-start
 
 ## Bring up the cluster
-up: kind-start flux-repo
-	make -s flux-install &>/dev/null
+up: kind-start
+	@make -s flux-install 1>/dev/null 2>&1
+	@make -s flux-bootstrap 1>/dev/null 2>&1
 
 ## Connect to Weave Scope
 connect:

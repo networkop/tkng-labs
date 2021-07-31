@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cilium
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: cilium
+  namespace: cilium
+spec:
+  url: https://helm.cilium.io/
+  interval: 10m
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cilium
+  namespace: cilium
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: cilium
+      version: "1.9.9"
+      sourceRef:
+        kind: HelmRepository
+        name: cilium
+        namespace: cilium
+      interval: 1m
+  values:
+    nodeinit:
+      enabled: true
+    kubeProxyReplacement: partial
+    hostServices:
+      enabled: true
+    externalIPs:
+      enabled: true
+    nodePort:
+      enabled: true
+    installIptablesRules: false
+    l7Proxy: false
+    hostPort:
+      enabled: true
+    bpf:
+      masquerade: false
+
+

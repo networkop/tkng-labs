@@ -19,7 +19,7 @@ kind-stop:
 		echo "kind cluster is not running"
 
 kind-test:
-	@which kind > /dev/null 
+	@which kind 1>/dev/null 2>&1
 
 kind-ensure: 
 	@make -s kind-test || make -s kind-install

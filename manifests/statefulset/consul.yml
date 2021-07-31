@@ -1,0 +1,29 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: hashicorp
+  namespace: default
+spec:
+  url: https://helm.releases.hashicorp.com
+  interval: 10m
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: consul
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: consul
+      version: "0.20.1"
+      sourceRef:
+        kind: HelmRepository
+        name: hashicorp
+        namespace: default
+      interval: 1m
+  values:
+    global:
+      name: consul
+
