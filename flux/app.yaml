@@ -6,7 +6,7 @@ metadata:
   namespace: flux
 spec:
   interval: 10m0s
-  path: ./manifests
+  path: ./manifests/app
   prune: true
   sourceRef:
     kind: GitRepository
