@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - command: ["tail", "-f", "/dev/null"]
-        image: nicolaka/netshoot
+        image: networkop/netshoot
         imagePullPolicy: Always
         name: net-tshoot
         securityContext:
