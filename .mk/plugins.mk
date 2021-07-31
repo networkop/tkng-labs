@@ -2,22 +2,22 @@ delete-kindnet:
 	-kubectl -n kube-system delete daemonset kindnet
 
 flannel: delete-kindnet preload-cni-image
-	kubectl apply -f flux/lab-config/flannel.yaml
+	kubectl apply -f flux/lab-configs/flannel.yaml
 
 weave: delete-kindnet
-	kubectl apply -f flux/lab-config/weave.yaml
+	kubectl apply -f flux/lab-configs/weave.yaml
 
 weave-restart:
 	kubectl -n kube-system delete pod -l name=weave-net
 
 calico: delete-kindnet
-	kubectl apply -f flux/lab-config/calico.yaml
+	kubectl apply -f flux/lab-configs/calico.yaml
 
 calico-restart: flush-routes
 	kubectl -n calico-system delete pod -l k8s-app=calico-node
 
 cilium: flux-init-wait delete-kindnet
-	kubectl apply -f flux/lab-config/cilium.yaml
+	kubectl apply -f flux/lab-configs/cilium.yaml
 
 cilium-check:
 	kubectl wait --for=condition=ready --timeout=60s -n cilium pod -l k8s-app=cilium

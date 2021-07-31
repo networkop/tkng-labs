@@ -2,10 +2,10 @@ untaint:
 	kubectl taint node k8s-guide-control-plane node-role.kubernetes.io/master-
 
 headless: untaint
-	kubectl apply -f flux/lab-config/headless.yaml
+	kubectl apply -f flux/lab-configs/headless.yaml
 
 headless-cleanup:
-	kubectl delete -f flux/lab-config/weave.yaml
+	kubectl delete -f flux/lab-configs/headless.yaml
 
 
 deployment:
