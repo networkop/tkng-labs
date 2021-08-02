@@ -14,7 +14,7 @@ kind-install:
 	GO111MODULE="on" go get -u sigs.k8s.io/kind@v0.9.0
 
 
-kind-stop: 
+kind-stop: cilium-uninstall
 	@kind delete cluster --name $(KIND_CLUSTER_NAME) || \
 		echo "kind cluster is not running"
 

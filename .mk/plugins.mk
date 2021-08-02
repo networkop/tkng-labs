@@ -20,10 +20,13 @@ cilium: flux-init-wait delete-kindnet
 	kubectl apply -f flux/lab-configs/cilium.yaml
 
 cilium-check:
-	kubectl wait --for=condition=ready --timeout=60s -n cilium pod -l k8s-app=cilium
+	kubectl exec -n cilium daemonset/cilium -- cilium status
 
 cilium-restart: flush-routes
 	kubectl -n cilium delete pod -l k8s-app=cilium
+
+cilium-uninstall: 
+	-kubectl -n cilium delete ds cilium
 
 nuke-all-pods: flush-cni-dir
 	kubectl delete --all pods --all-namespaces	
