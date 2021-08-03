@@ -31,17 +31,17 @@ spec:
   values:
     nodeinit:
       enabled: true
-    kubeProxyReplacement: partial
+    kubeProxyReplacement: strict 
     hostServices:
       enabled: true
     externalIPs:
       enabled: true
     nodePort:
       enabled: true
-    installIptablesRules: false
+    #installIptablesRules: false
     k8sServiceHost: k8s-guide-control-plane
     k8sServicePort: "6443"
-    l7Proxy: false
+    #l7Proxy: false
     hostPort:
       enabled: true
     bpf:
