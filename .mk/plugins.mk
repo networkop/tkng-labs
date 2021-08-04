@@ -19,6 +19,9 @@ calico-restart: flush-routes
 cilium: flux-init-wait delete-kindnet
 	kubectl apply -f flux/lab-configs/cilium.yaml
 
+cilium-wait:
+	kubectl wait --for=condition=ready --timeout=60s -n cilium pod -l k8s-app=cilium
+
 cilium-check:
 	kubectl exec -n cilium daemonset/cilium -- cilium status
 
