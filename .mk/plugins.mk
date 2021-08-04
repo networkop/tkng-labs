@@ -54,6 +54,13 @@ flush-nat:
 
 flush-all: flush-routes flush-nat
 
+nuke-kube-proxy:
+	-kubectl -n kube-system delete ds kube-proxy
+	-kubectl -n kube-system delete cm kube-proxy
+	docker exec -it k8s-guide-worker bash -c 'iptables-restore <(iptables-save | grep -v KUBE)'
+	docker exec -it k8s-guide-worker2 bash -c 'iptables-restore <(iptables-save | grep -v KUBE)'
+	docker exec -it k8s-guide-control-plane bash -c 'iptables-restore <(iptables-save | grep -v KUBE)'
+
 flush-cni-dir:
 	-docker exec -t k8s-guide-control-plane rm /etc/cni/net.d/10-kindnet.conflist
 	-docker exec -t k8s-guide-worker rm /etc/cni/net.d/10-kindnet.conflist
