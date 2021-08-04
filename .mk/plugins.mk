@@ -25,8 +25,8 @@ cilium-check:
 cilium-restart: flush-routes
 	kubectl -n cilium delete pod -l k8s-app=cilium
 
-cilium-uninstall: 
-	-kubectl -n cilium delete ds cilium
+cilium-unhook: 
+	-@hacks/unhook-cilium.sh 2>/dev/null
 
 nuke-all-pods: flush-cni-dir
 	kubectl delete --all pods --all-namespaces	
