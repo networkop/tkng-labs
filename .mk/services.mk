@@ -22,3 +22,15 @@ scale-down:
 
 cluster-ip:
 	-kubectl expose deployment web --port=80
+
+nodeport:
+	-kubectl expose deployment web --port=80 --type=NodePort
+
+node-ip-1:
+	@docker inspect --format='control-plane:{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' k8s-guide-control-plane
+
+node-ip-2:
+	@docker inspect --format='worker:{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' k8s-guide-worker
+
+node-ip-3:
+	@docker inspect --format='worker2:{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' k8s-guide-worker2
