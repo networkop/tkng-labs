@@ -1,0 +1,16 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: metallb
+  namespace: kube-system
+data:
+  config: |
+    address-pools:
+    - addresses:
+      - 198.51.100.0/24
+      name: default
+      protocol: bgp
+    peers:
+    - my-asn: 64500
+      peer-address: ${peer_addr}
+      peer-asn: 64496
