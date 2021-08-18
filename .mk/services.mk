@@ -34,3 +34,6 @@ node-ip-2:
 
 node-ip-3:
 	@docker inspect --format='worker2:{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' k8s-guide-worker2
+
+loadbalancer:
+	-kubectl expose deployment web --port=80 --type=LoadBalancer

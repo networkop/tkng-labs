@@ -1,0 +1,41 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: metallb
+  namespace: flux
+spec:
+  interval: 1m
+  url: https://metallb.github.io/metallb
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: metallb
+  namespace: kube-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: metallb
+      version: 'v0.10.2'
+      sourceRef:
+        kind: HelmRepository
+        name: metallb
+        namespace: flux
+      interval: 1m
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: lab
+  namespace: flux
+spec:
+  interval: 10m0s
+  path: ./manifests/metallb
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: labs
+  postBuild:
+    substitute:
+      peer_addr: "10.10.10.10"

@@ -16,6 +16,13 @@ calico: delete-kindnet
 calico-restart: flush-routes
 	kubectl -n calico-system delete pod -l k8s-app=calico-node
 
+metallb: frr-start
+	kubectl apply -f flux/lab-configs/metallb.yaml
+	kubectl patch kustomizations -n flux lab --patch '{"spec": {"postBuild": {"substitute": {"peer_addr": "$(FRR_IP)"}}}}' --type=merge
+
+metallb-delete: frr-cleanup
+	kubectl delete -f flux/lab-configs/metallb.yaml
+
 cilium: flux-init-wait delete-kindnet
 	kubectl apply -f flux/lab-configs/cilium.yaml
 

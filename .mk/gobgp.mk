@@ -4,7 +4,7 @@ GOBGP_IP ?= $(shell docker inspect --format='{{range .NetworkSettings.Networks}}
 gobgp-build:
 	docker build -t $(GOBGP_IMG) gobgp/
 
-gobgp-rr: gobgp-cleanup
+gobgp-rr: gobgp-cleanup gobgp-build
 	docker run -d --name gobgp \
 	--mount type=bind,source="$$(pwd)"/gobgp,target=/tmp/gobgp \
 	--network kind \
@@ -14,6 +14,8 @@ gobgp-rr: gobgp-cleanup
 gobgp-cleanup:
 	-docker rm -f gobgp
 
+gobgp-ip:
+	@echo ${GOBGP_IP}
 
 # 1. extract existing bgppeer definition
 # 2. change the name to prevent flux from overwriting it

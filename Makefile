@@ -12,6 +12,7 @@ include .mk/plugins.mk
 include .mk/gobgp.mk
 include .mk/services.mk
 include .mk/ipvs.mk
+include .mk/frr.mk
 
 .DEFAULT_GOAL := help
 
