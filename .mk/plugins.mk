@@ -18,7 +18,7 @@ calico-restart: flush-routes
 
 metallb: frr-start
 	kubectl apply -f flux/lab-configs/metallb.yaml
-	kubectl patch kustomizations -n flux lab --patch '{"spec": {"postBuild": {"substitute": {"peer_addr": "$(FRR_IP)"}}}}' --type=merge
+	kubectl patch kustomizations -n flux metallb --patch '{"spec": {"postBuild": {"substitute": {"peer_addr": "$(FRR_IP)"}}}}' --type=merge
 
 metallb-delete: frr-cleanup
 	kubectl delete -f flux/lab-configs/metallb.yaml
