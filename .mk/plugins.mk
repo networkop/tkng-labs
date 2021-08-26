@@ -22,6 +22,7 @@ metallb: frr-start
 
 metallb-delete: frr-cleanup
 	kubectl delete -f flux/lab-configs/metallb.yaml
+	git checkout HEAD -- frr/frr.conf
 
 cilium: flux-init-wait delete-kindnet
 	kubectl apply -f flux/lab-configs/cilium.yaml

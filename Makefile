@@ -13,6 +13,7 @@ include .mk/gobgp.mk
 include .mk/services.mk
 include .mk/ipvs.mk
 include .mk/frr.mk
+include .mk/ingress.mk
 
 .DEFAULT_GOAL := help
 
