@@ -59,6 +59,10 @@ gateway-setup: metallb
 	kubectl apply -f flux/lab-configs/istio.yaml
 	kubectl apply -f flux/lab-configs/gateway-api.yaml
 
+gateway-check:
+	@kubectl wait --for=condition=ready --timeout=60s -n istio-system pod --all
+	@kubectl wait --for=condition=ready --timeout=60s -n kube-system pod -l app.kubernetes.io/instance=metallb
+
 gateway-cleanup:
 	kubectl delete -k github.com/kubernetes-sigs/gateway-api/config/crd?ref=v0.3.0
 	kubectl delete -f flux/lab-configs/istio.yaml
