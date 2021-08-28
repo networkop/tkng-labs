@@ -1,5 +1,5 @@
 CONTROL_PLANE_NODE_IP := $(shell docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' k8s-guide-control-plane)
-KIND_BRIDGE_SUBNET := $(shell docker network inspect kind --format='{{(index .IPAM.Config 0).Subnet}}'e)
+KIND_BRIDGE_SUBNET := $(shell docker network inspect kind --format='{{(index .IPAM.Config 0).Subnet}}')
 
 ingress-nginx-add:
 	kubectl apply -f flux/lab-configs/ingress-nginx.yaml
@@ -43,12 +43,12 @@ ingress-cleanup: ingress-delete ingress-prep-delete
 	-make -s ingress-nginx-delete
 
 
-egress-setup: cilium
+egress-setup: 
 	docker run -d --rm --network kind --name echo mpolden/echoip -l ":80"
 	kubectl apply -f flux/lab-configs/egress.yaml
-	kubectl patch kustomizations -n flux metallb --patch '{"spec": {"postBuild": {"substitute": {"destination_cidr": "$(KIND_BRIDGE_SUBNET)"}}}}' --type=merge
-	kubectl patch kustomizations -n flux metallb --patch '{"spec": {"postBuild": {"substitute": {"egress_ip": "$(CONTROL_PLANE_NODE_IP)"}}}}' --type=merge
+	kubectl patch kustomizations -n flux egress-gw --patch '{"spec": {"postBuild": {"substitute": {"destination_cidr": "$(KIND_BRIDGE_SUBNET)"}}}}' --type=merge
+	kubectl patch kustomizations -n flux egress-gw --patch '{"spec": {"postBuild": {"substitute": {"egress_ip": "$(CONTROL_PLANE_NODE_IP)"}}}}' --type=merge
 
 egress-cleanup:
-	docker rm -f echo
-	kubectl delete -f flux/lab-configs/egress.yaml
+	-docker rm -f echo
+	-kubectl delete -f flux/lab-configs/egress.yaml
