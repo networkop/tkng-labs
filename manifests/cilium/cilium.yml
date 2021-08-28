@@ -45,6 +45,6 @@ spec:
     hostPort:
       enabled: true
     bpf:
-      masquerade: false
+      masquerade: true
 
 
