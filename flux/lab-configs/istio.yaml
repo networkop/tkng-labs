@@ -58,7 +58,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: manifests/charts/gateways/istio-egress
+      chart: manifests/charts/gateways/istio-ingress 
       sourceRef:
         kind: GitRepository
         name: istio

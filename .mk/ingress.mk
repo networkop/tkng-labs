@@ -52,3 +52,14 @@ egress-setup:
 egress-cleanup:
 	-docker rm -f echo
 	-kubectl delete -f flux/lab-configs/egress.yaml
+
+
+gateway-setup: metallb
+	kubectl apply -k github.com/kubernetes-sigs/gateway-api/config/crd?ref=v0.3.0
+	kubectl apply -f flux/lab-configs/istio.yaml
+	kubectl apply -f flux/lab-configs/gateway-api.yaml
+
+gateway-cleanup:
+	kubectl delete -k github.com/kubernetes-sigs/gateway-api/config/crd?ref=v0.3.0
+	kubectl delete -f flux/lab-configs/istio.yaml
+	kubectl delete -f flux/lab-configs/gateway-api.yaml
