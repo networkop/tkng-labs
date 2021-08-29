@@ -29,7 +29,8 @@ ingress-delete:
 	-kubectl -n default delete ingress tkng-1
 	-kubectl -n default delete ingress tkng-2
 
-
+ingress-wait:
+	kubectl wait --for=condition=ready --timeout=60s -n kube-system pod -l app.kubernetes.io/instance=ingress-controller
 
 ingress-setup:
 	make -s ingress-nginx-add
