@@ -20,10 +20,10 @@ ingress-prep-delete:
 	-kubectl -n default delete svc dev
 
 ingress-path-routing:
-	kubectl -n default create ingress tkng-1  --rule="/prod*=prod:8080" --rule="/dev*=dev:8080" 
+	kubectl -n default create ingress tkng-1  --class=nginx --rule="/prod*=prod:8080" --rule="/dev*=dev:8080" 
 
 ingress-host-routing:
-	kubectl -n default create ingress tkng-2  --rule="prod/*=prod:8080" --rule="dev/*=dev:8080" 
+	kubectl -n default create ingress tkng-2  --class=nginx --rule="prod/*=prod:8080" --rule="dev/*=dev:8080" 
 
 ingress-delete: 
 	-kubectl -n default delete ingress tkng-1
