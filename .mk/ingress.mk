@@ -43,9 +43,11 @@ ingress-prep:
 ingress-cleanup: ingress-delete ingress-prep-delete
 	-make -s ingress-nginx-delete
 
+egress-prep: 
+	-docker rm -f echo
+	-docker run -d --rm --network kind --name echo mpolden/echoip -l ":80"
 
-egress-setup: 
-	docker run -d --rm --network kind --name echo mpolden/echoip -l ":80"
+egress-setup: egress-prep
 	kubectl apply -f flux/lab-configs/egress.yaml
 	kubectl patch kustomizations -n flux egress-gw --patch '{"spec": {"postBuild": {"substitute": {"destination_cidr": "$(KIND_BRIDGE_SUBNET)"}}}}' --type=merge
 	kubectl patch kustomizations -n flux egress-gw --patch '{"spec": {"postBuild": {"substitute": {"egress_ip": "$(CONTROL_PLANE_NODE_IP)"}}}}' --type=merge
