@@ -7,16 +7,3 @@ containerdConfigPatches:
 - |-
   [plugins."io.containerd.grpc.v1.cri".registry.mirrors."quay.io"]
     endpoint = ["http://quay-cache:5000"]
-nodes:
-- role: control-plane
-  extraMounts:
-  - hostPath: hacks/10-kubeadm.conf
-    containerPath: /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
-- role: worker
-  extraMounts:
-  - hostPath: hacks/10-kubeadm.conf
-    containerPath: /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
-- role: worker
-  extraMounts:
-  - hostPath: hacks/10-kubeadm.conf
-    containerPath: /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
